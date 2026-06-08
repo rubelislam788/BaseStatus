@@ -1,7 +1,11 @@
 import "server-only";
 
 import { hasSupabaseConfig, getSupabaseServiceClient } from "@/lib/supabase/server";
-import type { ProfileCustomization, WalletProfileAggregate } from "@/lib/types";
+import type { ProfileCardKey, ProfileCustomization, WalletProfileAggregate } from "@/lib/types";
+
+type PartialProfileCustomization = Partial<ProfileCustomization> & {
+  cardVisibility?: Partial<Record<ProfileCardKey, boolean>>;
+};
 
 export async function upsertWalletProfile(address: string, aggregate: WalletProfileAggregate) {
   if (!hasSupabaseConfig()) return null;
@@ -267,7 +271,7 @@ export async function fetchProfileCustomization(address: string): Promise<Profil
   };
 }
 
-export async function updateProfileCustomization(address: string, ownerAddress: string, customization: Partial<ProfileCustomization>) {
+export async function updateProfileCustomization(address: string, ownerAddress: string, customization: PartialProfileCustomization) {
   if (!hasSupabaseConfig()) throw new Error("Supabase is not configured.");
   const supabase = getSupabaseServiceClient();
   const { data: profile, error } = await supabase.from("wallet_profiles").select("id,address").eq("address", address).maybeSingle();
