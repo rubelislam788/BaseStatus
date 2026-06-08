@@ -21,7 +21,7 @@ export function BottomNav() {
       {items.map((item) => {
         const active = pathname === item.href;
         return (
-          <Link key={item.href} href={item.href} className={cn("mobile-bottom-nav-item", active && "is-active")}>
+          <Link key={item.href} href={{ pathname: item.href }} className={cn("mobile-bottom-nav-item", active && "is-active")}>
             <item.icon size={18} aria-hidden="true" />
             <span>{item.label}</span>
           </Link>
