@@ -1,6 +1,7 @@
 import { AlertTriangle, CheckCircle2, ExternalLink, Lock, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ScoreRing } from "@/components/score-ring";
 import { StatCard } from "@/components/stat-card";
 import { ProfileHeader } from "@/components/profile-header";
 import { ProfileCardGrid } from "@/components/profile-card-grid";
