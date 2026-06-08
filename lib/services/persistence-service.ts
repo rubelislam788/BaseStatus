@@ -3,7 +3,7 @@ import "server-only";
 import { hasSupabaseConfig, getSupabaseServiceClient } from "@/lib/supabase/server";
 import type { ProfileCardKey, ProfileCustomization, WalletProfileAggregate } from "@/lib/types";
 
-type PartialProfileCustomization = Partial<ProfileCustomization> & {
+type PartialProfileCustomization = Omit<Partial<ProfileCustomization>, "cardVisibility"> & {
   cardVisibility?: Partial<Record<ProfileCardKey, boolean>>;
 };
 
